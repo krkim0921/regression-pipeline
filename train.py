@@ -1,14 +1,17 @@
 import numpy as np
 import pandas as pd
+import argparse
 
 from sklearn.model_selection import train_test_split
+from sklearn import metrics
 from src.make_pipeline import train_pipeline
 import src.config as config
 
+
 def run_train(model):
-    '''
-    Let's Rock'n Roll : train the model
-    '''
+    
+    #Let's Rock'n Roll : train the model
+
     print('Training Is Starting....PRAY ')
 
     df = pd.read_csv(config.TRAINING_CSV)
@@ -23,12 +26,23 @@ def run_train(model):
 
     # transform Target
     y_trian = np.log(y_train)
-    print(y_train.shape)
-    print(X_train.shape)
 
     house_pipeline = train_pipeline(model)
-    house_pipeline.fit(X_train, y_train)
+    house_pipeline.fit(X_train[config.FEATURES], y_train)
+    preds = house_pipeline.predict(X_test[config.FEATURES])
+    print(metrics.mean_squared_error(y_test, preds))
+
+    print('')
+    print('Training Is Finished!!')
 
 if __name__ == '__main__':
-    run_train('rf')
+    parser = argparse.ArgumentParser(description='Choose the Model for Regression Problem')
+    parser.add_argument('--model', type = str, required=True, help='check avaliable models in dispatcher.py')
+    args = parser.parse_args()
+    
+    run_train(args.model)
+
+
+
+    
 
