@@ -1,10 +1,9 @@
 TRAINING_CSV = "inputs/train.csv"
-PIPELINE_NAME = 'house_regression'
 TRAINING_FOLDS_CSV = "inputs/train_folds.csv"
 
 TARGET = 'SalePrice'
 
-# input variables 
+# input var
 FEATURES = ['MSSubClass', 'MSZoning', 'Neighborhood',
             'OverallQual', 'OverallCond', 'YearRemodAdd',
             'RoofStyle', 'MasVnrType', 'BsmtQual', 'BsmtExposure',
@@ -12,26 +11,26 @@ FEATURES = ['MSSubClass', 'MSZoning', 'Neighborhood',
             'BsmtFullBath', 'KitchenQual', 'Fireplaces', 'FireplaceQu',
             'GarageType', 'GarageFinish', 'GarageCars', 'PavedDrive',
             'LotFrontage',
-            # this one is only to calculate temporal variable:
+            # temporal variable:
             'YrSold']
 
-# this variable is to calculate the temporal variable,
-# must be dropped afterwards
+
+# Drop feature after calculation
 DROP_FEATURES = 'YrSold'
 
-# numerical variables with NA in train set
+# numerical var with NA 
 NUMERICAL_VARS_WITH_NA = ['LotFrontage']
 
-# categorical variables with NA in train set
+# categorical var with NA 
 CATEGORICAL_VARS_WITH_NA = ['MasVnrType', 'BsmtQual', 'BsmtExposure',
                             'FireplaceQu', 'GarageType', 'GarageFinish']
 
 TEMPORAL_VARS = 'YearRemodAdd'
 
-# variables to log transform
+# Vars need distribution transform
 NUMERICALS_LOG_VARS = ['LotFrontage', '1stFlrSF', 'GrLivArea']
 
-# categorical variables to encode
+# categorical var to encode
 CATEGORICAL_VARS = ['MSZoning', 'Neighborhood', 'RoofStyle', 'MasVnrType',
                     'BsmtQual', 'BsmtExposure', 'HeatingQC', 'CentralAir',
                     'KitchenQual', 'FireplaceQu', 'GarageType', 'GarageFinish',
@@ -40,3 +39,10 @@ CATEGORICAL_VARS = ['MSZoning', 'Neighborhood', 'RoofStyle', 'MasVnrType',
 
 # Reproducible Random State
 RANDOME_STATE = 777
+
+# Weights Directories
+TRAIN_WEIGHTS_DIR = "weights/"
+
+#Prediction Directories
+PRED_PIPE_DIR = "weights/12:27:42"
+PIPELINE_NAME = "et_trained_pipeline"

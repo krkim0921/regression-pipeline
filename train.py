@@ -1,17 +1,28 @@
+'''
+Author: Ian Kim
+Date: 2021.08.19
+Licence: AitheNutrigene
+
+'''
+             #         #######               
+            ###           #
+           ## ##          #  
+         ###   ###      ########     #
+
+
 import numpy as np
 import pandas as pd
 import argparse
-
 from sklearn.model_selection import train_test_split
 from sklearn import metrics
 from src.make_pipeline import train_pipeline
 import src.config as config
+import utils
+
 
 
 def run_train(model):
-    
     #Let's Rock'n Roll : train the model
-
     print('Training Is Starting....PRAY ')
 
     df = pd.read_csv(config.TRAINING_CSV)
@@ -20,20 +31,27 @@ def run_train(model):
         df[config.FEATURES],
         df[config.TARGET],
         test_size = 0.1,
-        random_state = config.RANDOME_STATE
-        
-    )
+        random_state = config.RANDOME_STATE )
 
     # transform Target
     y_trian = np.log(y_train)
 
+    #train
     house_pipeline = train_pipeline(model)
     house_pipeline.fit(X_train[config.FEATURES], y_train)
-    preds = house_pipeline.predict(X_test[config.FEATURES])
-    print(metrics.mean_squared_error(y_test, preds))
 
-    print('')
-    print('Training Is Finished!!')
+    #predict
+    preds = house_pipeline.predict(X_test[config.FEATURES])
+
+    print('-----------------Result-----------------')
+    print(np.sqrt(metrics.mean_squared_error(y_test, preds)))
+    #save pipeline
+    print('---------Model Saved Completed------------')
+    utils.save_pipeline(house_pipeline, model)
+    
+    print(      'Training Is Finished!!')
+    print('🤩😎🥳😍🤗🤩😎🥳😍🤗🤩😎🥳😍🤗🤩😎🥳😍🤗🤩😎🥳😍🤗')
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Choose the Model for Regression Problem')

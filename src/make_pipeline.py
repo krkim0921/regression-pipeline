@@ -14,8 +14,7 @@ def train_pipeline(model):
             (
                 "numric_missing_imputation",
                 NumericalMissing(
-                    variables= config.NUMERICAL_VARS_WITH_NA, mode = 'median'
-                )),
+                    variables= config.NUMERICAL_VARS_WITH_NA, mode = 'median')),
             (
                 "cat_missing_imputation",
                 CategoricalMissing(
@@ -45,12 +44,8 @@ def train_pipeline(model):
 
             (
                 f'{model} selected', REG_MODELS[model]
-            ),
-
-    
-            
+            ),           
         ]
     )
-
     return house_price_pipeline
 

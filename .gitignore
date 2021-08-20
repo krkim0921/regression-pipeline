@@ -140,3 +140,4 @@ cython_debug/
 #data, and model
 *.csv
 *.h5
+weights/
