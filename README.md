@@ -2,7 +2,8 @@
 
 ## dataset can be found Kaggle House Price Prediction
 
+## 
+
 
 ## Project Structure
-![Project structure]
-(inputs/structure.png)
+<img width='40%' src="inputs/structure.png"/>
