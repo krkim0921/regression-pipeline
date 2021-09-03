@@ -108,5 +108,3 @@ class RareLabelEncoder(BaseEstimator, TransformerMixin):
 
         return X
             
-            
-        

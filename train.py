@@ -34,7 +34,7 @@ def run_train(model):
         random_state = config.RANDOME_STATE )
 
     # transform Target
-    y_trian = np.log(y_train)
+    y_train = np.log(y_train)
 
     #train
     house_pipeline = train_pipeline(model)
